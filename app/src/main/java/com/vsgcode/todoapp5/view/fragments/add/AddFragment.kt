@@ -2,9 +2,12 @@ package com.vsgcode.todoapp5.view.fragments.add
 
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -34,9 +37,15 @@ class AddFragment : Fragment() {
         taskPrioritySpinner = view.findViewById(R.id.add_prioritySpinner);
         taskDescriptionEditText = view.findViewById(R.id.add_descriptionEditText);
 
+        return view;
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setHasOptionsMenu(true);
 
-        return view;
+        taskPrioritySpinner.onItemSelectedListener = mSharedViewModel.onSpinnerPriorityItemSelectListener
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
