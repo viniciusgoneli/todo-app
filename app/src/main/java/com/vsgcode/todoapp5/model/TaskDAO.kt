@@ -10,7 +10,7 @@ import androidx.room.Query
 interface TaskDAO {
 
     @Query("SELECT * FROM task_table ORDER BY id ASC")
-    suspend fun getAllTasks() : LiveData<List<Task>>
+    fun getAllTasks() : LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTask(task : Task)
