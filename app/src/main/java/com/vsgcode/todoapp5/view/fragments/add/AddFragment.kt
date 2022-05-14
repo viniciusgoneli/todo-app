@@ -11,11 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.vsgcode.todoapp5.R
 import com.vsgcode.todoapp5.data.model.Priority
 import com.vsgcode.todoapp5.data.model.Task
+import com.vsgcode.todoapp5.data.viewmodel.SharedViewModel
 import com.vsgcode.todoapp5.data.viewmodel.TaskViewModel
 
 class AddFragment : Fragment() {
 
     private val mTaskViewModel : TaskViewModel by viewModels();
+    private val mSharedViewModel : SharedViewModel by viewModels();
 
     private lateinit var taskTitleEditText : AppCompatEditText;
     private lateinit var taskPrioritySpinner : AppCompatSpinner;
@@ -44,10 +46,10 @@ class AddFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId === R.id.menu_save){
             val title = taskTitleEditText.text.toString();
-            val priority = parsePriority(taskPrioritySpinner.selectedItem.toString());
+            val priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
             val description = taskDescriptionEditText.text.toString();
 
-            if(!title.isEmpty()){
+            if(title.isNotEmpty()){
                 val task = Task(0, title, priority, description);
                 mTaskViewModel.insertTask(task);
                 Toast.makeText( requireContext(),
@@ -62,14 +64,5 @@ class AddFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun parsePriority(priority : String) : Priority{
-        return when(priority){
-            "High Priority" -> Priority.HIGH
-            "Medium Priority" -> Priority.MEDIUM
-            "Low Priority" -> Priority.LOW
-            else -> Priority.LOW
-        }
     }
 }
