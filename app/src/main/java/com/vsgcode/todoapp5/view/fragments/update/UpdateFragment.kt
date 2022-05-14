@@ -1,4 +1,4 @@
-package com.vsgcode.todoapp5.fragments.update
+package com.vsgcode.todoapp5.view.fragments.update
 
 import android.os.Bundle
 import android.view.*

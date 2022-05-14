@@ -1,12 +1,10 @@
-package com.vsgcode.todoapp5.fragments.list
+package com.vsgcode.todoapp5.view.fragments.list
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vsgcode.todoapp5.R
 
