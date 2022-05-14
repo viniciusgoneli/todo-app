@@ -11,7 +11,8 @@ import com.vsgcode.todoapp5.data.model.Task
 class TaskListAdapter(private var taskList : List<Task>) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val taskTitleTextView: TextView = itemView.findViewById(R.id.taskTiteTextView);
+        val taskTitleTextView: TextView = itemView.findViewById(R.id.taskTitleTextView);
+        val taskDescriptionTextView : TextView = itemView.findViewById(R.id.taskDescriptionTextView);
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -21,6 +22,8 @@ class TaskListAdapter(private var taskList : List<Task>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.taskTitleTextView.text = taskList[position].title;
+        holder.taskDescriptionTextView.text = taskList[position].description;
+
     }
 
     override fun getItemCount(): Int {

@@ -53,7 +53,7 @@ class AddFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId === R.id.menu_save){
+        if(item.itemId == R.id.menu_save){
             val title = taskTitleEditText.text.toString();
             val priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
             val description = taskDescriptionEditText.text.toString();

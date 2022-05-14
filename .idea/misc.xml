@@ -6,12 +6,13 @@
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/drawable/custom_input.xml" value="0.1421875" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1125" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1125" />
+        <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/drawable/viewholder_background.xml" value="0.2203125" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/content_main.xml" value="0.17769671704012507" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/fragment_add.xml" value="0.33" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/fragment_list.xml" value="0.15" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/fragment_update.xml" value="0.25" />
-        <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/task_view_holder.xml" value="0.5" />
+        <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/layout/task_view_holder.xml" value="0.4083333333333333" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/menu/add_fragment_menu.xml" value="0.25" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/menu/list_fragment_menu.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/vinic/AndroidStudioProjects/ToDoApp5/app/src/main/res/menu/menu_main.xml" value="0.12604166666666666" />
