@@ -8,4 +8,13 @@
     <string name="no_data">No Data</string>
     <string name="add_task">Add a new task</string>
 
+    <string name="task_title">Title</string>
+    <string name="task_description">Description</string>
+
+    <string-array name="priorities">
+        <item name="low_priority">Low Priority</item>
+        <item name="medium_priority">Medium Priority</item>
+        <item name="high_priority">High Priority</item>
+    </string-array>
+
 </resources>
