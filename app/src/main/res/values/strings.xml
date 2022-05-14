@@ -11,6 +11,13 @@
     <string name="task_title">Title</string>
     <string name="task_description">Description</string>
 
+    <string name="search_item">Search task</string>
+    <string name="menu_sort_by">Sort By</string>
+    <string name="priority_high">High priority</string>
+    <string name="priority_low">Low priority</string>
+    <string name="priority_medium">Medium priority</string>
+    <string name="deleteAll">Delete All</string>
+
     <string-array name="priorities">
         <item name="low_priority">Low Priority</item>
         <item name="medium_priority">Medium Priority</item>
