@@ -1,6 +1,7 @@
-package com.vsgcode.todoapp5.model
+package com.vsgcode.todoapp5.data
 
 import androidx.room.TypeConverter
+import com.vsgcode.todoapp5.data.model.Priority
 
 class Converters {
 
@@ -10,7 +11,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun toPriority(value : String) : Priority{
+    fun toPriority(value : String) : Priority {
         return Priority.valueOf(value);
     }
 }

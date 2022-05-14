@@ -1,4 +1,4 @@
-package com.vsgcode.todoapp5.model
+package com.vsgcode.todoapp5.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
