@@ -2,10 +2,24 @@ package com.vsgcode.todoapp5.view.fragments.add
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.vsgcode.todoapp5.R
+import com.vsgcode.todoapp5.data.model.Priority
+import com.vsgcode.todoapp5.data.model.Task
+import com.vsgcode.todoapp5.data.viewmodel.TaskViewModel
 
 class AddFragment : Fragment() {
+
+    private val mTaskViewModel : TaskViewModel by viewModels();
+
+    private lateinit var taskTitleEditText : AppCompatEditText;
+    private lateinit var taskPrioritySpinner : AppCompatSpinner;
+    private lateinit var taskDescriptionEditText : AppCompatEditText;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -14,6 +28,10 @@ class AddFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add, container, false)
 
+        taskTitleEditText = view.findViewById(R.id.add_taskTitleEditText);
+        taskPrioritySpinner = view.findViewById(R.id.add_prioritySpinner);
+        taskDescriptionEditText = view.findViewById(R.id.add_descriptionEditText);
+
         setHasOptionsMenu(true);
 
         return view;
@@ -21,5 +39,37 @@ class AddFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_fragment_menu, menu);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId === R.id.menu_save){
+            val title = taskTitleEditText.text.toString();
+            val priority = parsePriority(taskPrioritySpinner.selectedItem.toString());
+            val description = taskDescriptionEditText.text.toString();
+
+            if(!title.isEmpty()){
+                val task = Task(0, title, priority, description);
+                mTaskViewModel.insertTask(task);
+                Toast.makeText( requireContext(),
+                    "Task saved successfully!", Toast.LENGTH_SHORT).show()
+
+                findNavController().navigate(R.id.action_addFragment_to_listFragment);
+            }
+            else{
+                Toast.makeText( requireContext(),
+                    "The task title cannot be empty!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun parsePriority(priority : String) : Priority{
+        return when(priority){
+            "High Priority" -> Priority.HIGH
+            "Medium Priority" -> Priority.MEDIUM
+            "Low Priority" -> Priority.LOW
+            else -> Priority.LOW
+        }
     }
 }
