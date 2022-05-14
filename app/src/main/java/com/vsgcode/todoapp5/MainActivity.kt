@@ -5,6 +5,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.vsgcode.todoapp5.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(findNavController(R.id.navHostFragment));
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.navHostFragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
