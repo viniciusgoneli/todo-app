@@ -28,7 +28,7 @@
         android:id="@+id/addFragment"
         android:name="com.vsgcode.todoapp5.view.fragments.add.AddFragment"
         android:label="Add"
-        tools:layout="@layout/fragment_add" >
+        tools:layout="@layout/fragment_add">
         <action
             android:id="@+id/action_addFragment_to_listFragment"
             app:destination="@id/listFragment" />
@@ -41,5 +41,8 @@
         <action
             android:id="@+id/action_updateFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <argument
+            android:name="Task"
+            app:argType="com.vsgcode.todoapp5.data.model.Task" />
     </fragment>
 </navigation>

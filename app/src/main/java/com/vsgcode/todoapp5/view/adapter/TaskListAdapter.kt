@@ -5,17 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.vsgcode.todoapp5.R
 import com.vsgcode.todoapp5.data.model.Priority
 import com.vsgcode.todoapp5.data.model.Task
+import com.vsgcode.todoapp5.view.fragments.list.ListFragmentDirections
 
 class TaskListAdapter() : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     private var taskList = emptyList<Task>()
 
     inner class TaskViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val viewHolderLayout : ConstraintLayout = itemView.findViewById(R.id.viewHolderLayout);
         val taskTitleTextView: TextView = itemView.findViewById(R.id.taskTitleTextView);
         val taskDescriptionTextView : TextView = itemView.findViewById(R.id.taskDescriptionTextView);
         val priorityIndicator : CardView = itemView.findViewById(R.id.priorityIndicatorCardView);
@@ -30,6 +34,11 @@ class TaskListAdapter() : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>()
         holder.taskTitleTextView.text = taskList[position].title;
         holder.taskDescriptionTextView.text = taskList[position].description;
         setCardBackgroundColorByPriority(holder.priorityIndicator, taskList[position].priority)
+
+        holder.viewHolderLayout.setOnClickListener { view ->
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(taskList[position])
+            view.findNavController().navigate(action);
+        }
     }
 
     private fun setCardBackgroundColorByPriority(priorityIndicator : CardView, priority: Priority){
