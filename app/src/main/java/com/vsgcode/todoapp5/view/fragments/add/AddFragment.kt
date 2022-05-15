@@ -73,6 +73,6 @@ class AddFragment : Fragment() {
 
         val task = Task(0, title, priority, description);
 
-        mTaskViewModel.updateTask(task);
+        mTaskViewModel.insertTask(task);
     }
 }
