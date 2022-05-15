@@ -19,7 +19,7 @@ class ListFragment : Fragment() {
 
     private val mTaskViewModel : TaskViewModel by  viewModels()
 
-    private lateinit var taskList : RecyclerView;
+    private val recyclerViewAdapter by lazy { TaskListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,9 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        taskList = view.findViewById(R.id.recyclerView);
+        val recyclerView : RecyclerView = view.findViewById(R.id.recyclerView);
+
+        setupRecyclerView(recyclerView)
 
         return view;
     }
@@ -36,8 +38,8 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mTaskViewModel.getAllData.observe(this, Observer {
-            setupRecyclerView(it);
+        mTaskViewModel.getAllData.observe(viewLifecycleOwner, Observer { list ->
+            recyclerViewAdapter.setTaskList(list);
         })
 
         view.findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener {
@@ -51,12 +53,12 @@ class ListFragment : Fragment() {
         setHasOptionsMenu(true);
     }
 
-    private fun setupRecyclerView(list : List<Task>) {
+    private fun setupRecyclerView(recyclerView: RecyclerView) {
         val layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,
             false)
-        taskList.adapter = TaskListAdapter(list);
-        taskList.layoutManager = layoutManager;
+        recyclerView.adapter = recyclerViewAdapter;
+        recyclerView.layoutManager = layoutManager;
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
