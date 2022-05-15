@@ -11,6 +11,7 @@ import com.vsgcode.todoapp5.R
 import com.vsgcode.todoapp5.data.model.Priority
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
+
     fun parsePriority(priority : String) : Priority {
         return when(priority){
             "High Priority" -> Priority.HIGH
