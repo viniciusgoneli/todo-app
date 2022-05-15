@@ -5,12 +5,17 @@ import android.view.*
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.navArgs
 import com.vsgcode.todoapp5.R
+import com.vsgcode.todoapp5.data.viewmodel.SharedViewModel
 
 class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
+
+    private val mSharedViewModel : SharedViewModel by viewModels();
 
     private lateinit var taskTitleEditText : AppCompatEditText
     private lateinit var taskDescriptionEditText : AppCompatEditText
@@ -34,6 +39,9 @@ class UpdateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        taskPrioritySpinner.onItemSelectedListener = mSharedViewModel.onSpinnerPriorityItemSelectListener;
+
         fillFieldsWithArgs(view);
     }
 
