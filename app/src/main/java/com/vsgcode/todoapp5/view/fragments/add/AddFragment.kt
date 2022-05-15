@@ -54,24 +54,25 @@ class AddFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_save){
-            val title = taskTitleEditText.text.toString();
-            val priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
-            val description = taskDescriptionEditText.text.toString();
-
-            if(title.isNotEmpty()){
-                val task = Task(0, title, priority, description);
-                mTaskViewModel.insertTask(task);
-                Toast.makeText( requireContext(),
-                    "Task saved successfully!", Toast.LENGTH_SHORT).show()
-
+            if(taskTitleEditText.text.toString().isNotEmpty()){
+                insertTask()
+                Toast.makeText( requireContext(), "Task saved successfully!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_addFragment_to_listFragment);
-            }
-            else{
-                Toast.makeText( requireContext(),
-                    "The task title cannot be empty!", Toast.LENGTH_SHORT).show()
-            }
-        }
 
+                return true
+            }
+            Toast.makeText( requireContext(), "The task title cannot be empty!", Toast.LENGTH_SHORT).show()
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun insertTask(){
+        val title = taskTitleEditText.text.toString();
+        val priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
+        val description = taskDescriptionEditText.text.toString();
+
+        val task = Task(0, title, priority, description);
+
+        mTaskViewModel.updateTask(task);
     }
 }

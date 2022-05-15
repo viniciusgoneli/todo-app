@@ -63,24 +63,32 @@ class UpdateFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+
             R.id.menu_save -> {
-                args.task.title = taskTitleEditText.text.toString();
-                args.task.priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
-                args.task.description = taskDescriptionEditText.text.toString();
-
                 if(args.task.title.isNotEmpty()){
-                    mTaskViewModel.updateTask(args.task);
-                    Toast.makeText( requireContext(),
-                        "Task saved successfully!", Toast.LENGTH_SHORT).show()
-
+                    updateTask()
+                    Toast.makeText( requireContext(), "Task saved successfully!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_updateFragment_to_listFragment);
+
+                    return true
                 }
-                else{
-                    Toast.makeText( requireContext(),
-                        "The task title cannot be empty!", Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText( requireContext(), "The task title cannot be empty!", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.menu_delete -> {
+                mTaskViewModel.deleteTask(args.task)
+                Toast.makeText( requireContext(), "Task deleted successfully!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_updateFragment_to_listFragment);
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateTask(){
+        args.task.title = taskTitleEditText.text.toString();
+        args.task.priority = mSharedViewModel.parsePriority(taskPrioritySpinner.selectedItem.toString());
+        args.task.description = taskDescriptionEditText.text.toString();
+
+        mTaskViewModel.updateTask(args.task);
     }
 }
