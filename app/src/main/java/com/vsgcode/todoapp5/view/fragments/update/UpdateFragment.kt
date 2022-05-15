@@ -1,6 +1,7 @@
 package com.vsgcode.todoapp5.view.fragments.update
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
